@@ -14,9 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse_lazy
+from django.conf import settings
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
     path('', include('finxiapp.urls')),
+    # Redireciona para a página de Admin: 
+    path('', RedirectView.as_view(url=reverse_lazy('admin:index'))),
     path('admin/', admin.site.urls),
+    # Para autenticação do usuário:
+    path('api-auth/', include('rest_framework.urls')),
+
 ]
+
+# Habilita a Debug Toolbar 
+# if settings.DEBUG:
+#     import debug_toolbar
+#     urlpatterns = [
+#         path('__debug__/', include(debug_toolbar.urls)),
+#     ] + urlpatterns
