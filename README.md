@@ -1,6 +1,6 @@
 # TesteFinxi
 
-## Para executar em um container Docker:
+### Para executar em um container Docker:
 `sudo docker-compose up`
 
 -------------------------------------------------------------------------------------
