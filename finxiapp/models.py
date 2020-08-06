@@ -28,12 +28,12 @@ class Anunciante(models.Model):
 # https://docs.djangoproject.com/en/3.0/ref/validators/
 
 class DemandaDePecas(models.Model):
-    descricao = models.CharField(max_length=200, verbose_name="Descrição")
-    contato_email = models.EmailField(max_length=200, verbose_name="Email de contato") #email/telefone
-    contato_telefone = models.CharField(max_length=50, verbose_name="Telefone")
-    anunciante = models.ForeignKey(Anunciante, on_delete=models.CASCADE, null=True)
-    anunciante2 = models.ForeignKey('auth.User', related_name='demanda', on_delete=models.CASCADE, null=True)
-    status = models.BooleanField() #aberta 0/finalizada 1   
+    descricao = models.CharField(max_length=200, verbose_name="Descrição", null=True)
+    contato_email = models.EmailField(max_length=200, verbose_name="Email de contato",  null=True) #email/telefone
+    contato_telefone = models.CharField(max_length=50, verbose_name="Telefone",  null=True)
+    # anunciante = models.ForeignKey(Anunciante, on_delete=models.CASCADE, null=True)
+    user_anunciante = models.ForeignKey('auth.User', related_name='demanda', on_delete=models.CASCADE, null=True)
+    status = models.BooleanField( null=True) #aberta 0/finalizada 1   
     endereco_rua = models.CharField(max_length=MAX_LENGTH, verbose_name="Rua", null=True)
     endereco_numero = models.CharField(max_length=10, verbose_name="Número", null=True)
     endereco_complemento = models.CharField(max_length=MAX_LENGTH, verbose_name="Complemento", null=True)

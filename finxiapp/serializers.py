@@ -7,9 +7,12 @@ from django.contrib.auth.models import User
 
 class DemandaSerializer(serializers.ModelSerializer):
     
-    anunciante2 = serializers.StringRelatedField(many=True)
-    owner = serializers.ReadOnlyField(source='owner.username')
+    user_anunciante = serializers.StringRelatedField()
+    #owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = DemandaDePecas
         fields = '__all__' 
+
+    def create(self, validated_data):
+        return DemandaDePecas.objects.create(**validated_data)     
