@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "8b8618a1-03e2-4304-9139-d278cb13301e",
+		"name": "FinxiApiCollection",
+		"description": "# Apresentação\n\nDocumentação para utilização da Api de Demandas de Peças desenvolvida para teste.\n\n# Autenticação\n\nÉ necessário realizar login com um username e senha de Anunciante (cadastrado na aplicação Django) para ter permissão de visualização e manipulação das demandas deste anunciante.\n\n# Error Codes\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**403 – Forbidden**\n\nSem autorização suficiente para acessar o recurso desejado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Demanda",
+			"item": [
+				{
+					"name": "Listagem de Demandas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8000/demandas/",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8000",
+							"path": [
+								"demandas",
+								""
+							]
+						},
+						"description": "Exibe uma lista com todas as demandas do Anunciante logado.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Criação de uma Demanda",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senha!123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anunciante_teste",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Descrição da Demanda\", \n    \"endereco_rua\": \"Rua Teste\", \n    \"endereco_numero\": \"42\", \n    \"endereco_complemento\": \"Prox a prefeitura\" ,\n    \"endereco_bairro\": \"Jardim das Flores\",\n    \"endereco_cidade\": \"São Paulo\",\n    \"endereco_estado\": \"SP\", \n    \"contato_email\": \"teste@teste.com\", \n    \"contato_telefone\": \"(15)99999-9999\", \n    \"status\": 0}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8000/demandas/",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8000",
+							"path": [
+								"demandas",
+								""
+							],
+							"query": [
+								{
+									"key": "descricao",
+									"value": "\"Descrição da demanda\"",
+									"disabled": true
+								},
+								{
+									"key": "user_anunciante",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "contato_email",
+									"value": "\"email@teste.com\"",
+									"disabled": true
+								},
+								{
+									"key": "contato_telefone",
+									"value": "\"(15)99999-9999\"",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "True",
+									"disabled": true
+								},
+								{
+									"key": "endereco_rua",
+									"value": "\"Rua Teste\"",
+									"disabled": true
+								},
+								{
+									"key": "endereco_numero",
+									"value": "\"42\"",
+									"disabled": true
+								},
+								{
+									"key": "endereco_complemento",
+									"value": "\"Prox a prefeitura\"",
+									"disabled": true
+								},
+								{
+									"key": "endereco_bairro",
+									"value": "\"Jardim das Flores\"",
+									"disabled": true
+								},
+								{
+									"key": "endereco_cidade",
+									"value": "\"São Paulo\"",
+									"disabled": true
+								},
+								{
+									"key": "endereco_estado",
+									"value": "\"SP\"",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Cria uma demanda de acordo com os parâmetros passados.\nÉ necessário estar logado como Anunciante."
+					},
+					"response": []
+				},
+				{
+					"name": "Edição de Demanda",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senha!123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anunciante_teste",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"descricao\": \"Descrição alterada da Demanda\",  \n    \"status\": 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8000/demandas/",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8000",
+							"path": [
+								"demandas",
+								""
+							]
+						},
+						"description": "Edita uma demanda com os parâmetros passados na requisição.\n\nÉ necessário estar logado como Anunciante."
+					},
+					"response": []
+				},
+				{
+					"name": "Exclusão de Demanda",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8000/delete/5/",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8000",
+							"path": [
+								"delete",
+								"5",
+								""
+							]
+						},
+						"description": "Remove uma demanda pelo id. É necessário passar um id válido e existente.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Finalização de uma Demanda",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senha!123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "anunciante_teste",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2,\n    \"status\": 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://0.0.0.0:8000/demandas/",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "8000",
+							"path": [
+								"demandas",
+								""
+							]
+						},
+						"description": "Altera o status da demanda de aberta para finalizada.\nDeve existir uma demanda com o id passado."
+					},
+					"response": []
+				}
+			],
+			"description": "Esta pasta representa um objeto do tipo Demanda na Api",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1ea79e4f-6129-4b9a-8d72-da133269341d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3475bd71-b7b7-4e98-be70-c734eabd5dd4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
